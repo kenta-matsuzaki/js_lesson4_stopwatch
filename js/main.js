@@ -8,9 +8,10 @@
 
   let startTime;
   let timeoutId;
+  let elapsedTime = 0;
 
   function countUp(){
-    const d = new Date(Date.now() - startTime);
+    const d = new Date(Date.now() - startTime + elapsedTime);
     const m = d.getMinutes();
     const s = d.getSeconds();
     const ms = d.getMilliseconds();
@@ -29,10 +30,12 @@
 
   stop.addEventListener('click', ()=> {
     clearTimeout(timeoutId);
+    elapsedTime += Date.now() - startTime;
   });
 
   reset.addEventListener('click', ()=> {
     timer.textContent = '00:00.000';
+    elapsedTime = 0;
   });
 
 }
